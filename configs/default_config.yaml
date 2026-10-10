@@ -1,0 +1,38 @@
+# AeroEdge-AI Configuration Profile (3SVK Season 3)
+project:
+  name: "AeroEdge-AI"
+  track: "Intelligent Edge Computing & Resilient Autonomous Systems"
+  version: "1.0.0"
+  author: "Priyanshu Sarjan"
+
+telemetry:
+  frequency_hz: 20
+  window_size: 30
+  sampling_rate_ms: 50
+  features:
+    - "accel_z"
+    - "gyro_pitch"
+    - "motor_rpm"
+    - "battery_volt"
+    - "altitude_m"
+    - "airspeed_mps"
+
+adaptive_controller:
+  weights:
+    w_cpu: 0.20
+    w_mem: 0.15
+    w_lat: 0.25
+    w_conf: 0.25
+    w_trans: 0.10
+    w_comp: 0.05
+  thresholds:
+    cpu_limit: 0.85
+    mem_limit: 0.85
+    max_latency_ms: 120.0
+
+sync_protocol:
+  delta_threshold: 0.02
+  batch_size: 20
+  max_retries: 5
+  compression: "zlib-level-6"
+  hash_algorithm: "SHA-256"
